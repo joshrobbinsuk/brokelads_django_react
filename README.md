@@ -1,4 +1,6 @@
-Rebuild of brokelads betting site (see my other repositories) with Django, Redux Toolkit, Amazon Cognito/Amplify Auth, invite a friend features, and a Celery/Redis worker
-
-(Work in progress)
 # brokelads_django_react
+
+Rebuild of brokelads betting site (see my other repositories) with Django Rest Framework, React, Redux Toolkit, Amazon Cognito/Amplify Auth, and a Celery/Redis scheduler
+
+(Work in progress with invite a friend features to come).
+
