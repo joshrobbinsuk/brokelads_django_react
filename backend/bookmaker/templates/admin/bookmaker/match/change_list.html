@@ -1,0 +1,20 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+<div>
+  <form style="margin:4px" action="matches/" method="POST">
+    {% csrf_token %}
+    <button type="submit">Get next matches</button>
+  </form>
+  <form style="margin:4px" action="odds/" method="POST">
+    {% csrf_token %}
+    <button type="submit">Get odds</button>
+  </form>
+  <form style="margin:4px" action="results/" method="POST">
+    {% csrf_token %}
+    <button type="submit">Get results</button>
+  </form>
+</div>
+<br />
+{{ block.super }}
+{% endblock %}

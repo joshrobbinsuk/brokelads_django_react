@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+  bldb:
+    container_name: bldb
+    image: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "${DATABASE_NAME}"
+      POSTGRES_USER: "${DATABASE_USER}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+
+  blredis:
+    image: redis:alpine
+    container_name: blredis
+
+  blweb:
+    container_name: blweb
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+      # - ./backend/match/mock_data:/app/backend/match/mock_data
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_HOST: bldb
+      DATABASE_USER: "${DATABASE_USER}"
+      DATABASE_NAME: "${DATABASE_NAME}"
+      DATABASE_PASSWORD: "${DATABASE_PASSWORD}"
+      DATABASE_PORT: 5432
+      DJANGO_SETTINGS_MODULE: "backend.settings"
+      SECRET_KEY: "${MY_SECRET_KEY}"
+      PYTHONUNBUFFERED: 1
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_REGION: ${AWS_REGION}
+      COGNITO_CUSTOMER_USER_POOL_ID: "${COGNITO_CUSTOMER_USER_POOL_ID}"
+      COGNITO_CUSTOMER_APP_CLIENT_ID: "${COGNITO_CUSTOMER_APP_CLIENT_ID}"
+      RAPID_API_KEY: "${RAPID_API_KEY}"
+    depends_on:
+      - bldb
+      - blredis
+
+  celery:
+    build: .
+    command: celery -A backend worker -l info
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_HOST: bldb
+      DATABASE_USER: "${DATABASE_USER}"
+      DATABASE_NAME: "${DATABASE_NAME}"
+      DATABASE_PASSWORD: "${DATABASE_PASSWORD}"
+      DATABASE_PORT: 5432
+      DJANGO_SETTINGS_MODULE: "backend.settings"
+      SECRET_KEY: "${MY_SECRET_KEY}"
+      REDIS_HOST: blredis
+      PYTHONUNBUFFERED: 1
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_REGION: ${AWS_REGION}
+      COGNITO_CUSTOMER_USER_POOL_ID: "${COGNITO_CUSTOMER_USER_POOL_ID}"
+      COGNITO_CUSTOMER_APP_CLIENT_ID: "${COGNITO_CUSTOMER_APP_CLIENT_ID}"
+      RAPID_API_KEY: "${RAPID_API_KEY}"
+    depends_on:
+      - bldb
+      - blredis
+
+  celery-beat:
+    build: .
+    command: celery -A backend beat -l info
+    volumes:
+      - ./backend:/app
+    environment:
+      REDIS_HOST: blredis
+      SECRET_KEY: "${MY_SECRET_KEY}"
+    depends_on:
+      - bldb
+      - blredis
+volumes:
+  pgdata:
+  # mockdata:
