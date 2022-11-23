@@ -32,7 +32,7 @@ class BetSerializer(serializers.ModelSerializer):
         read_only=True,
     )
     match_id = serializers.PrimaryKeyRelatedField(
-        queryset=Match.objects.all(), required=False
+        queryset=Match.objects.all(),
     )
 
     class Meta:
