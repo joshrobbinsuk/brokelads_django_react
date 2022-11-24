@@ -1,0 +1,82 @@
+[
+  {
+    "model": "bookmaker.match",
+    "pk": 1,
+    "fields": {
+      "api_id": 855739,
+      "datetime": "2025-11-22T16:00:00Z",
+      "venue": "Stadium 974",
+      "home_team": "Mexico",
+      "home_team_logo": "https://media.api-sports.io/football/teams/16.png",
+      "away_team": "Poland",
+      "away_team_logo": "https://media.api-sports.io/football/teams/24.png",
+      "home_odds": null,
+      "away_odds": null,
+      "draw_odds": null,
+      "home_goals": null,
+      "away_goals": null,
+      "voided": false,
+      "voided_message": ""
+    }
+  },
+  {
+    "model": "bookmaker.match",
+    "pk": 3,
+    "fields": {
+      "api_id": 855740,
+      "datetime": "2025-11-23T10:00:00Z",
+      "venue": "Al Bayt Stadium",
+      "home_team": "Morocco",
+      "home_team_logo": "https://media.api-sports.io/football/teams/31.png",
+      "away_team": "Croatia",
+      "away_team_logo": "https://media.api-sports.io/football/teams/3.png",
+      "home_odds": "3.80",
+      "away_odds": "2.10",
+      "draw_odds": "3.20",
+      "home_goals": null,
+      "away_goals": null,
+      "voided": false,
+      "voided_message": ""
+    }
+  },
+  {
+    "model": "bookmaker.match",
+    "pk": 4,
+    "fields": {
+      "api_id": 855741,
+      "datetime": "2025-11-23T13:00:00Z",
+      "venue": "Khalifa International Stadium",
+      "home_team": "Germany",
+      "home_team_logo": "https://media.api-sports.io/football/teams/25.png",
+      "away_team": "Japan",
+      "away_team_logo": "https://media.api-sports.io/football/teams/12.png",
+      "home_odds": "1.47",
+      "away_odds": "6.25",
+      "draw_odds": "4.60",
+      "home_goals": null,
+      "away_goals": null,
+      "voided": false,
+      "voided_message": ""
+    }
+  },
+  {
+    "model": "bookmaker.match",
+    "pk": 5,
+    "fields": {
+      "api_id": 855741,
+      "datetime": "2022-11-23T13:00:00Z",
+      "venue": "Khalifa International Stadium",
+      "home_team": "Germany",
+      "home_team_logo": "https://media.api-sports.io/football/teams/25.png",
+      "away_team": "Japan",
+      "away_team_logo": "https://media.api-sports.io/football/teams/12.png",
+      "home_odds": "1.47",
+      "away_odds": "6.25",
+      "draw_odds": "4.60",
+      "home_goals": null,
+      "away_goals": null,
+      "voided": false,
+      "voided_message": ""
+    }
+  }
+]

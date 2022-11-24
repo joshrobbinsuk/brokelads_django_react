@@ -75,32 +75,32 @@ def handle_result(res):
             if match.has_goals:
                 print(f"*** {match.home_team} v {match.away_team} has goals already")
             else:
-                match.home_goals = data["home_goals"]
-                match.away_goals = data["away_goals"]
-                match.save()
-                update_bets_and_payout(match)
+                update_match_bets_and_payout(match, data)
         except Match.DoesNotExist:
             print(f"No match found: {data['api_id']}")
 
 
-@transaction.atomic
-def update_bets_and_payout(match):
+def update_match_bets_and_payout(match, data):
+    match.home_goals = data["home_goals"]
+    match.away_goals = data["away_goals"]
+    match.save()
     bets = match.bet_set.all()
     for bet in bets:
-        if bet.choice == match.result:
-            bet.outcome = Bet.Outcomes.WON
-            user = bet.user
-            TransactionRecord.objects.create(
-                type=TransactionRecord.Types.PAYOUT,
-                bet=bet,
-                user_balance_before=user.balance,
-                user_balance_after=user.balance + bet.returns,
-            )
-            user.balance = user.balance + bet.returns
-            user.save()
-        else:
-            bet.outcome = Bet.Outcomes.LOST
-        bet.save()
+        with transaction.atomic():
+            if bet.choice == match.result:
+                bet.outcome = Bet.Outcomes.WON
+                user = bet.user
+                TransactionRecord.objects.create(
+                    type=TransactionRecord.Types.PAYOUT,
+                    bet=bet,
+                    user_balance_before=user.balance,
+                    user_balance_after=user.balance + bet.returns,
+                )
+                user.balance = user.balance + bet.returns
+                user.save()
+            else:
+                bet.outcome = Bet.Outcomes.LOST
+            bet.save()
 
 
 # BASIC DATA FETCH REQUEST

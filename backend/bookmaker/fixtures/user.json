@@ -1,0 +1,26 @@
+[
+  {
+    "model": "account.customeruser",
+    "pk": 1,
+    "fields": {
+      "created": "2022-11-22T14:29:52.156Z",
+      "modified": "2022-11-22T14:29:52.156Z",
+      "status": "ACTIVE",
+      "cognito_uuid": "6cf4720d-dad6-4a6d-847c-1c232a1b1a4b",
+      "email": "josh@test.com",
+      "balance": "100.00"
+    }
+  },
+  {
+    "model": "account.customeruser",
+    "pk": 2,
+    "fields": {
+      "created": "2022-11-22T14:29:52.156Z",
+      "modified": "2022-11-22T14:29:52.156Z",
+      "status": "ACTIVE",
+      "cognito_uuid": "6cf4720d-dad6-4a6d-847c-1c232a1b1a4b",
+      "email": "josh2@test.com",
+      "balance": "100.00"
+    }
+  }
+]

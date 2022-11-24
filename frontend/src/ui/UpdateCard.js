@@ -3,7 +3,7 @@ import { Typography, Box } from "@mui/material";
 
 import { useFetchServerWillRefreshQuery } from "src/bookmaker/bookmakerApi";
 
-const UpdateCard = ({ match }) => {
+const UpdateCard = () => {
   const refresh = useFetchServerWillRefreshQuery(null, {
     pollingInterval: 60 * 1000,
   });
