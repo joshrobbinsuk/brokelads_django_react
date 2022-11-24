@@ -90,13 +90,14 @@ def update_match_bets_and_payout(match, data):
             if bet.choice == match.result:
                 bet.outcome = Bet.Outcomes.WON
                 user = bet.user
+                new_balance = user.balance + bet.returns
                 TransactionRecord.objects.create(
                     type=TransactionRecord.Types.PAYOUT,
                     bet=bet,
                     user_balance_before=user.balance,
-                    user_balance_after=user.balance + bet.returns,
+                    user_balance_after=new_balance,
                 )
-                user.balance = user.balance + bet.returns
+                user.balance = new_balance
                 user.save()
             else:
                 bet.outcome = Bet.Outcomes.LOST
