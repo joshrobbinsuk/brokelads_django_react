@@ -1,5 +1,5 @@
 # 855740 is valid for betting, 855741 has kicked off already
-original_data = [
+mock_api_response_data = [
     {
         'fixture': {
             'id': 855740,
@@ -90,9 +90,8 @@ original_data = [
     },
 ]
 
-# match one == draw
-# match two = home win
-results_data = [
+# 855740 == draw // 855741 updates bet relating to no user
+mock_api_results_data = [
     {
         'fixture': {
             'id': 855740,
@@ -134,56 +133,10 @@ results_data = [
             'extratime': {'home': None, 'away': None},
             'penalty': {'home': None, 'away': None},
         },
-    },
-    {
-        'fixture': {
-            'id': 855741,
-            'referee': 'Ivan Cisneros',
-            'timezone': 'UTC',
-            'date': '2022-11-23T13:00:00+00:00',
-            'timestamp': 1669208400,
-            'periods': {'first': None, 'second': None},
-            'venue': {
-                'id': None,
-                'name': 'Khalifa International Stadium',
-                'city': 'Ar-Rayyan',
-            },
-            'status': {'long': 'Not Started', 'short': 'FT', 'elapsed': None},
-        },
-        'league': {
-            'id': 1,
-            'name': 'World Cup',
-            'country': 'World',
-            'logo': 'https://media.api-sports.io/football/leagues/1.png',
-            'flag': None,
-            'season': 2022,
-            'round': 'Group Stage - 1',
-        },
-        'teams': {
-            'home': {
-                'id': 25,
-                'name': 'Germany',
-                'logo': 'https://media.api-sports.io/football/teams/25.png',
-                'winner': None,
-            },
-            'away': {
-                'id': 12,
-                'name': 'Japan',
-                'logo': 'https://media.api-sports.io/football/teams/12.png',
-                'winner': None,
-            },
-        },
-        'goals': {'home': 2, 'away': 0},
-        'score': {
-            'halftime': {'home': None, 'away': None},
-            'fulltime': {'home': None, 'away': None},
-            'extratime': {'home': None, 'away': None},
-            'penalty': {'home': None, 'away': None},
-        },
-    },
+    }
 ]
 
-odds_data = [
+mock_api_odds_data = [
     {
         "league": {
             "id": 1,
@@ -194,7 +147,7 @@ odds_data = [
             "season": 2022,
         },
         "fixture": {
-            "id": 855748,
+            "id": 855739,
             "timezone": "UTC",
             "date": "2022-11-25T16:00:00+00:00",
             "timestamp": 1669392000,
@@ -220,7 +173,7 @@ odds_data = [
     }
 ]
 
-bad_data = [
+bad_mock_api_response_data = [
     {
         'fixtureX': {
             'id': 855740,
@@ -311,7 +264,7 @@ bad_data = [
     },
 ]
 
-bad_odds_data = [
+bad_mock_api_odds_data = [
     {
         "league": {
             "id": 1,

@@ -1,0 +1,30 @@
+[
+  {
+    "model": "bookmaker.bet",
+    "pk": 1,
+    "fields": {
+      "created": "2022-11-22T14:32:05.209Z",
+      "modified": "2022-11-22T17:59:33.579Z",
+      "match": 3,
+      "user": 1,
+      "choice": "HOME",
+      "stake": "10.00",
+      "returns": "24.00",
+      "outcome": "UNDECIDED"
+    }
+  },
+  {
+    "model": "bookmaker.bet",
+    "pk": 2,
+    "fields": {
+      "created": "2022-11-22T14:32:05.209Z",
+      "modified": "2022-11-22T17:59:33.579Z",
+      "match": 3,
+      "user": 2,
+      "choice": "DRAW",
+      "stake": "10.00",
+      "returns": "24.00",
+      "outcome": "UNDECIDED"
+    }
+  }
+]
