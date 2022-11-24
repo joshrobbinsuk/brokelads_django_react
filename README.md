@@ -20,7 +20,10 @@ COGNITO_CUSTOMER_USER_POOL_ID=
 COGNITO_CUSTOMER_APP_CLIENT_ID=
 RAPID_API_KEY=
 ```
-You will need to register a Cognito User Pool on an AWS account. (https://aws.amazon.com/cognito/) 
+
+You will need pipenv to run the project (https://pipenv.pypa.io/en/latest/)
+
+You will need to register a Cognito User Pool on an AWS account. (https://aws.amazon.com/cognito/)
 
 You will also need to register a Rapid API account (https://rapidapi.com/). Rapid API starts charging users after 100 requests a day. In this codebase, external API calls are scheduled to never reach this limit. Be careful not to change this. Rapid API calls are not related to the app's traffic, although they can be triggered at will from the admin panel.
 
@@ -35,11 +38,13 @@ docker-compose build
 ```
 
 ## Database
+
 Then create database on postgres container
 
 ```
 docker exec -it bldb psql -U [DATABASE_USER] -c "CREATE DATABASE [DATABASE_NAME]"
 ```
+
 ## Finally
 
 Start the project
@@ -60,4 +65,5 @@ Navigate to root/frontend and run
 npm install
 npm start
 ```
+
 And you should be good to go...
