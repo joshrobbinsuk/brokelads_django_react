@@ -6,7 +6,11 @@ from django.utils import timezone
 from datetime import datetime
 
 from .models import Match, Bet, TransactionRecord
-from bookmaker.rapid_api import get_next_matches, get_odds, get_results
+from bookmaker.rapid_api import (
+    get_next_matches_and_save_to_db,
+    get_odds_and_update_matches_on_db,
+    get_results_and_update_matches_on_db,
+)
 from bookmaker.exceptions import (
     RapidApiDataFetchingError,
     RapidApiDataParsingError,
@@ -94,15 +98,15 @@ class Match(admin.ModelAdmin):
     def get_urls(self):
         urls = super().get_urls()
         my_action_urls = [
-            path('matches/', self.get_next_matches),
-            path('odds/', self.get_odds),
-            path('results/', self.get_results),
+            path('matches/', self.get_next_matches_and_save_to_db),
+            path('odds/', self.get_odds_and_update_matches_on_db),
+            path('results/', self.get_results_and_update_matches_on_db),
         ]
         return my_action_urls + urls
 
-    def get_next_matches(self, request):
+    def get_next_matches_and_save_to_db(self, request):
         try:
-            get_next_matches()
+            get_next_matches_and_save_to_db()
             self.message_user(request, "Next matches have been fetched")
         except RapidApiDataFetchingError:
             messages.error(request, "Data Fetching Error")
@@ -110,9 +114,9 @@ class Match(admin.ModelAdmin):
             messages.error(request, "Data Parsing Error")
         return HttpResponseRedirect("../")
 
-    def get_odds(self, request):
+    def get_odds_and_update_matches_on_db(self, request):
         try:
-            get_odds()
+            get_odds_and_update_matches_on_db()
             self.message_user(request, "Odds have been fetched")
         except RapidApiDataFetchingError:
             messages.error(request, "Data Fetching Error")
@@ -120,9 +124,9 @@ class Match(admin.ModelAdmin):
             messages.error(request, "Data Parsing Error")
         return HttpResponseRedirect("../")
 
-    def get_results(self, request):
+    def get_results_and_update_matches_on_db(self, request):
         try:
-            get_results()
+            get_results_and_update_matches_on_db()
             self.message_user(request, "Results have been fetched")
         except RapidApiDataFetchingError:
             messages.error(request, "Data Fetching Error")

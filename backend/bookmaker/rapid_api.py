@@ -21,13 +21,13 @@ next_params = {"league": settings.RAPID_API_LEAGUE_ID, "next": "20"}
 last_params = {"league": settings.RAPID_API_LEAGUE_ID, "last": "12"}
 
 
-def get_next_matches():
+def get_next_matches_and_save_to_db():
     response = rapid_api_request(fixtures_url, next_params)
     for res in response:
         handle_next_fixture(res)
 
 
-def get_odds():
+def get_odds_and_update_matches_on_db():
     # just checking on home odds -- assumption is that
     # all odds are either null or not null
     no_odds_fixtures = Match.objects.filter(home_odds__isnull=True)
@@ -39,7 +39,7 @@ def get_odds():
             print(f"*** No odds for {match.home_team} v {match.away_team}")
 
 
-def get_results():
+def get_results_and_update_matches_on_db():
     response = rapid_api_request(fixtures_url, last_params)
     for res in response:
         handle_result(res)
