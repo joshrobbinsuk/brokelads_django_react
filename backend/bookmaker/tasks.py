@@ -1,7 +1,11 @@
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
-from bookmaker.rapid_api import get_next_matches, get_odds, get_results
+from bookmaker.rapid_api import (
+    get_next_matches_and_save_to_db,
+    get_odds_and_update_matches_on_db,
+    get_results_and_update_matches_on_db,
+)
 
 logger = get_task_logger(__name__)
 
@@ -17,7 +21,7 @@ def task_test():
 def next_matches():
     logger.info("Getting next matches")
     try:
-        get_next_matches()
+        get_next_matches_and_save_to_db()
     except Exception as e:
         logger.info("Next matches exception,", e)
 
@@ -26,7 +30,7 @@ def next_matches():
 def odds():
     logger.info("Getting odds")
     try:
-        get_odds()
+        get_odds_and_update_matches_on_db()
     except Exception as e:
         logger.info("Odds exception,", e)
 
@@ -35,6 +39,6 @@ def odds():
 def results():
     logger.info("Getting results")
     try:
-        get_results()
+        get_results_and_update_matches_on_db()
     except Exception as e:
         logger.info("Results exception,", e)
