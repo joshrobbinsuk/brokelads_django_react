@@ -58,11 +58,14 @@ def handle_next_fixture(res):
 
 
 def handle_odds(match, res):
-    data = rapid_api_parse_odds(res)
-    match.home_odds = data['home_odds']
-    match.away_odds = data['away_odds']
-    match.draw_odds = data['draw_odds']
-    match.save()
+    try:
+        data = rapid_api_parse_odds(res)
+        match.home_odds = data['home_odds']
+        match.away_odds = data['away_odds']
+        match.draw_odds = data['draw_odds']
+        match.save()
+    except:
+        raise NoOddsFixtureWarning
 
 
 def handle_result(res):
