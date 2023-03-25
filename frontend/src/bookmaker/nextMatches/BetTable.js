@@ -26,7 +26,13 @@ const BetTable = ({
       <Table
         sx={{
           maxWidth: "100%",
-          "& td, th": { border: 0, fontSize: "16px", p: 1, align: "center" },
+          "& td, th": {
+            width: "33%",
+            border: 0,
+            fontSize: "16px",
+            p: 1,
+            align: "center",
+          },
         }}
       >
         <TableHead>
