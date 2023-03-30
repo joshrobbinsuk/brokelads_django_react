@@ -212,5 +212,5 @@ CELERY_BEAT_SCHEDULE = {
 ########################### RAPID API
 RAPID_API_HOST = "api-football-v1.p.rapidapi.com"
 RAPID_API_KEY = os.environ.get("RAPID_API_KEY")
-RAPID_API_LEAGUE_ID = 1  # world cup
-# English National League = 43 // English Championship = 40
+RAPID_API_LEAGUE_ID = 41  # english league 1
+# English Championship = 40

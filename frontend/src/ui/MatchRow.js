@@ -44,7 +44,7 @@ const Team = ({ teamName, teamImg, home = true }) => {
             style={{
               maxHeight: "100%",
               width: "auto",
-              border: "0.5px solid black",
+              // border: "0.5px solid black",
             }}
             src={teamImg}
             alt={`${teamName} logo`}
