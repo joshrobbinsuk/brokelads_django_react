@@ -2,8 +2,6 @@
 
 Rebuild of brokelads betting site (see my other repositories) with Django Rest Framework, React, Redux Toolkit, Amazon Cognito/Amplify Auth, and a Celery/Redis scheduler
 
-(Work in progress with invite a friend features to come).
-
 # Initial setup
 
 After cloning the project, add the following env vars in the root:
