@@ -13,7 +13,7 @@ from bookmaker.utils import localise_time
 
 def show_next_matches():
     future_matches = Match.objects.filter(datetime__gte=datetime.now())
-    return [match for match in future_matches if match.has_odds]
+    return [match for match in future_matches if match.has_odds and not match.result]
 
 
 @transaction.atomic

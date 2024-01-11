@@ -10,6 +10,7 @@ from bookmaker.rapid_api import (
     get_next_matches_and_save_to_db,
     get_odds_and_update_matches_on_db,
     get_results_and_update_matches_on_db,
+    update_match_bets_and_payout,
 )
 from bookmaker.exceptions import (
     RapidApiDataFetchingError,
@@ -87,6 +88,8 @@ class Match(admin.ModelAdmin):
     search_fields = ("home_team", "away_team")
     list_display = ("match", "kickoff")
 
+    actions = ("fake_result",)
+
     @admin.display(description='match')
     def match(self, obj):
         return obj
@@ -94,6 +97,13 @@ class Match(admin.ModelAdmin):
     @admin.display(description='kick off')
     def kickoff(self, obj):
         return localise_datetime(obj.datetime)
+
+    @admin.action(description='Fake a 1-1 draw')
+    def fake_result(modeladmin, request, queryset):
+        for match in queryset:
+            data = {"home_goals": 1, "away_goals": 1}
+            update_match_bets_and_payout(match, data)
+        messages.success(request, "Result(s) faked!")
 
     def get_urls(self):
         urls = super().get_urls()
@@ -138,5 +148,4 @@ class Match(admin.ModelAdmin):
 @admin.register(TransactionRecord)
 class TransactionRecordAdmin(admin.ModelAdmin):
     model: TransactionRecord
-
     search_fields = ("bet__user__email",)

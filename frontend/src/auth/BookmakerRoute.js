@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Amplify, Auth } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { Stack, Box, Typography } from "@mui/material";
+import { Stack, Box, Typography, Image } from "@mui/material";
 
 import config from "../config";
 import Bookmaker from "src/bookmaker/Bookmaker";
+import { blImage } from "src/public";
 
 Amplify.configure(config.cognito.customer);
 
@@ -33,7 +34,7 @@ const BookmakerRoute = () => {
 
 const Header = () => (
   <Box w={"100%"} sx={{ textAlign: "center" }}>
-    <Typography variant="h1">BROKELADS</Typography>
+    <img src={blImage} alt="Brokelads logo" style={{ maxWidth: "100%" }} />
   </Box>
 );
 

@@ -35,16 +35,6 @@ First build all docker containers
 docker-compose build
 ```
 
-## Database
-
-Then create database on postgres container
-
-```
-docker exec -it bldb psql -U [DATABASE_USER] -c "CREATE DATABASE [DATABASE_NAME]"
-```
-
-## Finally
-
 Start the project
 
 ```
