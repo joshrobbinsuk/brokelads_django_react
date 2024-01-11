@@ -35,8 +35,6 @@ First build all docker containers
 docker-compose build
 ```
 
-## Finally
-
 Start the project
 
 ```
