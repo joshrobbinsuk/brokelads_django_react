@@ -25,17 +25,15 @@ You will need to register a Cognito User Pool on an AWS account. (https://aws.am
 
 You will also need to register a Rapid API account (https://rapidapi.com/). Rapid API starts charging users after 100 requests a day. In this codebase, external API calls are scheduled to never reach this limit. Be careful not to change this. Rapid API calls are not related to the app's traffic, although they can be triggered at will from the admin panel.
 
-# To run locally
-
 ## Build containers
 
-First build all docker containers
+Build the images
 
 ```
 docker-compose build
 ```
 
-Start the project
+Start the containers
 
 ```
 docker-compose up
